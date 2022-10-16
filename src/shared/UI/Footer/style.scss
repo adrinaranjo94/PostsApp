@@ -1,0 +1,17 @@
+.footer {
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #120b21;
+
+  &__author {
+    font-size: 14px;
+  }
+
+  &__copyright {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+}
