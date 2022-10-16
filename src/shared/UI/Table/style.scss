@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr:nth-of-type(odd) {
+    background: #372091;
+  }
+
+  td {
+    padding: 4px 8px;
+  }
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  table,
+  thead,
+  tbody,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+}
