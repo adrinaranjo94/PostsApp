@@ -17,10 +17,10 @@
     "jsx": "react-jsx",
     "types": ["node"],
     "paths": {
-      "@applications": ["./src/applications"],
-      "@domains": ["./src/domains"],
-      "@router": ["./src/router"],
-      "@shared": ["./src/shared"]
+      "@applications/*": ["./src/applications/*"],
+      "@domains/*": ["./src/domains/*"],
+      "@router/*": ["./src/router/*"],
+      "@shared/*": ["./src/shared/*"]
     }
   },
   "include": ["src"],
