@@ -1,18 +1,30 @@
 import { ToastConnector } from '@shared/connectors/ToastConnector'
 import { createContext, useEffect, useMemo, useReducer, useState } from 'react'
-import { defaultState, PostsReducer, PostsStatus, PostsReducerState } from '../reducers/PostsReducer/index'
-import { API_GET_POSTS, DOWNLOAD_POSTS, API_GET_FILTERED_POSTS_BY_USER_ID } from '../reducers/PostsReducer/types'
+import { defaultState, PostsReducer } from '../reducers/PostsReducer'
+import {
+  API_GET_POSTS,
+  DOWNLOAD_POSTS,
+  DOWNLOAD_POSTS_WITH_USERS,
+  PostsReducerState,
+  PostsStatus,
+  DESELECT_USER,
+  SELECT_USER_AND_FILTER,
+} from '../reducers/PostsReducer/types'
 import { axiosService } from '@shared/services'
 import { Post } from '../models/Post'
 
-interface ContextValue {
+export interface PostContextType {
   state: PostsReducerState
+  filterByUserId: (userId: number | null) => void
 }
 
-const defaultContextValue: ContextValue = {
+const ContextValue: PostContextType = {
   state: defaultState,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  filterByUserId: (userId: number | null) => {},
 }
-export const PostsContext = createContext(defaultContextValue)
+
+export const PostsContext = createContext(ContextValue)
 
 interface PostsProviderProps {
   children: React.ReactNode
@@ -22,7 +34,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
   const [state, dispatch] = useReducer(PostsReducer, defaultState)
 
   useEffect(() => {
-    dispatch({ type: API_GET_POSTS, payload: { data: [] } })
+    dispatch({ type: API_GET_POSTS })
   }, [])
 
   useEffect(() => {
@@ -31,7 +43,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
         service
           .get<Post[], Post>()
           .then((response) => {
-            dispatch({ type: DOWNLOAD_POSTS, payload: { data: response.data } })
+            dispatch({ type: DOWNLOAD_POSTS_WITH_USERS, payload: { posts: response.data } })
           })
           .catch((err) => {
             console.log(err)
@@ -39,23 +51,31 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
         break
       case PostsStatus.GET_FILTERED_POSTS_BY_USER_ID:
         service
-          .get<Post[], Post>({ urlParams: [{ key: 'userId', value: '1' }] })
+          .get<Post[], Post>({
+            urlParams: [{ key: 'userId', value: state.userSelected ? `${state.userSelected}` : '' }],
+          })
           .then((response) => {
-            dispatch({ type: DOWNLOAD_POSTS, payload: { data: response.data } })
+            dispatch({ type: DOWNLOAD_POSTS, payload: { posts: response.data } })
           })
           .catch((err) => {
             console.log(err)
           })
-        break
-      case PostsStatus.IDLE:
-        console.log('IDLE STATUS')
         break
       default:
         break
     }
   }, [state.status])
 
-  const value = useMemo(() => ({ state }), [state])
+  const filterByUserId = (userId: number | null) => {
+    if (userId) {
+      dispatch({ type: SELECT_USER_AND_FILTER, payload: { userId } })
+    } else {
+      dispatch({ type: DESELECT_USER })
+      dispatch({ type: API_GET_POSTS })
+    }
+  }
+
+  const value = useMemo(() => ({ state, filterByUserId }), [state])
 
   return <PostsContext.Provider value={value}>{children}</PostsContext.Provider>
 }
