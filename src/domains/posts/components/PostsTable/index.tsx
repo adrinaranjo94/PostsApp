@@ -11,10 +11,12 @@ const PostsTable = () => {
   return (
     <Table>
       <Head>
-        <HeadCell key={`cell-${PostProperties.id}`}>{PostProperties.id}</HeadCell>
-        <HeadCell key={`cell-${PostProperties.title}`}>{PostProperties.title}</HeadCell>
-        <HeadCell key={`cell-${PostProperties.body}`}>{PostProperties.body}</HeadCell>
-        <HeadCell key={`cell-${PostProperties.userId}`}>{PostProperties.userId}</HeadCell>
+        <Row>
+          <HeadCell key={`cell-${PostProperties.id}`}>{PostProperties.id}</HeadCell>
+          <HeadCell key={`cell-${PostProperties.title}`}>{PostProperties.title}</HeadCell>
+          <HeadCell key={`cell-${PostProperties.body}`}>{PostProperties.body}</HeadCell>
+          <HeadCell key={`cell-${PostProperties.userId}`}>{PostProperties.userId}</HeadCell>
+        </Row>
       </Head>
       <Body>
         {posts.map((post) => (
