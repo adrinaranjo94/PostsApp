@@ -1,11 +1,21 @@
 import PostsTable from '@domains/posts/components/PostsTable'
-import PostsProvider from '@domains/posts/contexts/PostsContext'
+import PostsTableActions from '@domains/posts/components/PostsTableActions'
+import PostsProvider, { PostsContext } from '@domains/posts/contexts/PostsContext'
 
 const Posts = () => {
   return (
     <div>
       <PostsProvider>
-        <PostsTable />
+        <PostsTableActions />
+        <PostsContext.Consumer>
+          {({ state: { isLoading } }) =>
+            !isLoading && (
+              <>
+                <PostsTable />
+              </>
+            )
+          }
+        </PostsContext.Consumer>
       </PostsProvider>
     </div>
   )
