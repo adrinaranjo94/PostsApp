@@ -6,4 +6,9 @@
   border-radius: 8px;
   outline: none;
   cursor: pointer;
+
+  &--active {
+    color: #2c1a5b;
+    background-color: #fff;
+  }
 }
