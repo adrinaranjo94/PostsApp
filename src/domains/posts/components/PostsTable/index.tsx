@@ -1,13 +1,11 @@
-import { PostsContext } from '@domains/posts/contexts/PostsContext'
 import { PostProperties } from '@domains/posts/models/Post'
 import Table, { Cell, Row, Body, Head, HeadCell } from '@shared/UI/Table'
-import { useContext } from 'react'
+import { Post } from '../../models/Post'
 
-const PostsTable = () => {
-  const {
-    state: { posts },
-  } = useContext(PostsContext)
-
+interface PostsTableProps {
+  posts: Post[]
+}
+const PostsTable = ({ posts }: PostsTableProps) => {
   return (
     <Table>
       <Head>
