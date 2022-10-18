@@ -26,5 +26,5 @@ export const createArrPages = (numPages: number) => {
 export const keyTitleAsc: KeyToSort = { key: 'title', direction: sortDirection.asc, type: typeVar.string }
 export const keyTitleDesc: KeyToSort = { key: 'title', direction: sortDirection.desc, type: typeVar.string }
 
-export const keyUserIdAsc: KeyToSort = { key: 'userId', direction: sortDirection.asc, type: typeVar.string }
-export const keyUserIdDesc: KeyToSort = { key: 'userId', direction: sortDirection.desc, type: typeVar.string }
+export const keyUserIdAsc: KeyToSort = { key: 'userId', direction: sortDirection.asc, type: typeVar.number }
+export const keyUserIdDesc: KeyToSort = { key: 'userId', direction: sortDirection.desc, type: typeVar.number }
