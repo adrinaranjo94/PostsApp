@@ -1,14 +1,16 @@
 .postsTableActions {
   padding: 24px;
   display: flex;
+  gap: 16px;
 
   @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
     flex-direction: column;
+  }
 
-    &__filter {
-      display: flex;
-      justify-content: flex-end;
-    }
+  &__sorts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 }
 

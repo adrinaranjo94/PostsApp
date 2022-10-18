@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import Dropdown from '@shared/UI/Drowdown'
 import { usePostsContext } from '../../hooks/usePostsContext'
 
@@ -7,8 +7,18 @@ import PostsTable from '../PostsTable'
 import { usePagination } from '@domains/posts/hooks/usePagination'
 import { Post } from '../../models/Post'
 import Button from '@shared/UI/Button'
-import { createOptionsFromUsersId, defaultNumItemsPerPage, typesOfNumItemsPerPage } from './utils'
+import {
+  createArrPages,
+  createOptionsFromUsersId,
+  defaultNumItemsPerPage,
+  typesOfNumItemsPerPage,
+  keyTitleAsc,
+  keyTitleDesc,
+  keyUserIdAsc,
+  keyUserIdDesc,
+} from './utils'
 import { DropdownOption } from '@shared/UI/Drowdown/index'
+import { useSortPosts } from '@domains/posts/hooks/useSortPosts'
 
 const PostsTableActions = () => {
   const {
@@ -16,16 +26,11 @@ const PostsTableActions = () => {
     filterByUserId,
   } = usePostsContext()
 
-  const {
-    itemsToShow,
-    numPages,
-    currentPage,
-    itemsPerPage,
-    goToNextPage,
-    goToPreviousPage,
-    goToPage,
-    changeNumItemsPerPage,
-  } = usePagination<Post>(posts, defaultNumItemsPerPage)
+  const { arrSorted, keySelected, selectKeyToSort } = useSortPosts(null, posts)
+  const { itemsToShow, numPages, currentPage, itemsPerPage, actions } = usePagination<Post>(
+    arrSorted,
+    defaultNumItemsPerPage
+  )
 
   const [userOptions] = useState(createOptionsFromUsersId(users))
 
@@ -34,25 +39,21 @@ const PostsTableActions = () => {
   }
 
   const selectOptionDropdownItemsPerPage = (option: DropdownOption) => {
-    changeNumItemsPerPage(option.key || defaultNumItemsPerPage)
+    actions.changeNumItemsPerPage(option.key || defaultNumItemsPerPage)
   }
 
   const createListNumPages = useCallback(
     () =>
-      [...Array(numPages).keys()]
-        // Create arr pages
-        .map((k) => k + 1)
-        // Create button pages
-        .map((page) => (
-          <Button
-            key={`page-${page}`}
-            onClick={() => goToPage(page)}
-            classes={[page === currentPage ? 'button--active' : '']}
-          >
-            {page}
-          </Button>
-        )),
-    [numPages, goToPage, currentPage]
+      createArrPages(numPages).map((page) => (
+        <Button
+          key={`page-${page}`}
+          onClick={() => actions.goToPage(page)}
+          classes={[page === currentPage ? 'button--active' : '']}
+        >
+          {page}
+        </Button>
+      )),
+    [numPages, actions, currentPage]
   )
 
   return (
@@ -66,12 +67,38 @@ const PostsTableActions = () => {
             selectOption={selectOptionDropdownFilterByUserId}
           />
         </div>
+        <div className='postsTableActions__sorts'>
+          <Button
+            onClick={() => selectKeyToSort(keyTitleAsc)}
+            classes={[keyTitleAsc.key === keySelected?.key ? 'button--active' : '']}
+          >
+            Ordenar titulo asc
+          </Button>
+          <Button
+            onClick={() => selectKeyToSort(keyTitleDesc)}
+            classes={[keyTitleDesc.key === keySelected?.key ? 'button--active' : '']}
+          >
+            Ordenar titulo desc
+          </Button>
+          <Button
+            onClick={() => selectKeyToSort(keyUserIdAsc)}
+            classes={[keyUserIdAsc.key === keySelected?.key ? 'button--active' : '']}
+          >
+            Ordenar ID usuario asc
+          </Button>
+          <Button
+            onClick={() => selectKeyToSort(keyUserIdDesc)}
+            classes={[keyUserIdDesc.key === keySelected?.key ? 'button--active' : '']}
+          >
+            Ordenar ID usuario desc
+          </Button>
+        </div>
       </div>
       {!isLoading && <PostsTable posts={itemsToShow} />}
       <div className='postsTablePagination'>
-        <Button onClick={goToPreviousPage}>{'<'}</Button>
+        <Button onClick={actions.goToPreviousPage}>{'<'}</Button>
         {createListNumPages()}
-        <Button onClick={goToNextPage}>{'>'}</Button>
+        <Button onClick={actions.goToNextPage}>{'>'}</Button>
         <Dropdown
           name='page'
           optionSelected={itemsPerPage}
