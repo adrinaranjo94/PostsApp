@@ -4,12 +4,19 @@ import { ROUTES as POSTS_ROUTES } from './route/posts'
 
 export const ROOT_PATH = '/'
 
-export interface ROUTE {
+type BASIC_ROUTE = {
   path: string
   key: string
   element: () => JSX.Element
-  routes?: ROUTE[]
 }
+
+type STATIC_ROUTE = BASIC_ROUTE
+
+interface DYNAMIC_ROUTE extends BASIC_ROUTE {
+  getDynamicPath: (id: string) => string
+}
+
+export type ROUTE = (STATIC_ROUTE | DYNAMIC_ROUTE) & { routes: ROUTE[] }
 
 export const ROUTES: ROUTE[] = [
   {
