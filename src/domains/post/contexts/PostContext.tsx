@@ -16,7 +16,7 @@ const ContextValue: PostContextType = {
 export const PostContext = createContext(ContextValue)
 
 interface PostProviderProps {
-  id: number
+  id: string
   children: ReactNode
 }
 
