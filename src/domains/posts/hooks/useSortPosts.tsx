@@ -65,7 +65,7 @@ function useSortPosts(keyToSort: KeyToSort | null, arr: Post[]): useSortPostsRes
     } else {
       setArrSorted(arrayToSort)
     }
-  }, [keySelected, sortArrByKey])
+  }, [keySelected, sortArrByKey, arrayToSort])
 
   return { arrSorted, selectKeyToSort, keySelected }
 }

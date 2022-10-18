@@ -35,7 +35,6 @@ function usePagination<T>(items: T[], numItemsPerPage: number): usePaginationRes
   }, [currentPage, itemsPerPage, numPages, totalItems])
 
   useEffect(() => {
-    console.log(items)
     setTotalItems(items)
     setNumPages(getNumPages(items))
     setCurrentPage(1)
