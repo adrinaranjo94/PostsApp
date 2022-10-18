@@ -5,10 +5,12 @@ interface usePaginationResponse<T> {
   numPages: number
   currentPage: number
   itemsPerPage: number
-  goToNextPage: () => void
-  goToPreviousPage: () => void
-  goToPage: (page: number) => void
-  changeNumItemsPerPage: (numItems: number) => void
+  actions: {
+    goToNextPage: () => void
+    goToPreviousPage: () => void
+    goToPage: (page: number) => void
+    changeNumItemsPerPage: (numItems: number) => void
+  }
 }
 
 function usePagination<T>(items: T[], numItemsPerPage: number): usePaginationResponse<T> {
@@ -33,6 +35,7 @@ function usePagination<T>(items: T[], numItemsPerPage: number): usePaginationRes
   }, [currentPage, itemsPerPage, numPages, totalItems])
 
   useEffect(() => {
+    console.log(items)
     setTotalItems(items)
     setNumPages(getNumPages(items))
     setCurrentPage(1)
@@ -65,10 +68,12 @@ function usePagination<T>(items: T[], numItemsPerPage: number): usePaginationRes
     numPages,
     currentPage,
     itemsPerPage,
-    goToNextPage,
-    goToPreviousPage,
-    goToPage,
-    changeNumItemsPerPage,
+    actions: {
+      goToNextPage,
+      goToPreviousPage,
+      goToPage,
+      changeNumItemsPerPage,
+    },
   }
 }
 
