@@ -70,25 +70,25 @@ const PostsTableActions = () => {
         <div className='postsTableActions__sorts'>
           <Button
             onClick={() => selectKeyToSort(keyTitleAsc)}
-            classes={[keyTitleAsc.key === keySelected?.key ? 'button--active' : '']}
+            classes={[keyTitleAsc === keySelected ? 'button--active' : '']}
           >
             Ordenar titulo asc
           </Button>
           <Button
             onClick={() => selectKeyToSort(keyTitleDesc)}
-            classes={[keyTitleDesc.key === keySelected?.key ? 'button--active' : '']}
+            classes={[keyTitleDesc === keySelected ? 'button--active' : '']}
           >
             Ordenar titulo desc
           </Button>
           <Button
             onClick={() => selectKeyToSort(keyUserIdAsc)}
-            classes={[keyUserIdAsc.key === keySelected?.key ? 'button--active' : '']}
+            classes={[keyUserIdAsc === keySelected ? 'button--active' : '']}
           >
             Ordenar ID usuario asc
           </Button>
           <Button
             onClick={() => selectKeyToSort(keyUserIdDesc)}
-            classes={[keyUserIdDesc.key === keySelected?.key ? 'button--active' : '']}
+            classes={[keyUserIdDesc === keySelected ? 'button--active' : '']}
           >
             Ordenar ID usuario desc
           </Button>
