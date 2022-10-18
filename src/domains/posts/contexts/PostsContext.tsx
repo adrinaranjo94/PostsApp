@@ -20,7 +20,7 @@ export interface PostContextType {
 
 const ContextValue: PostContextType = {
   state: defaultState,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   filterByUserId: (userId: number | null) => {},
 }
 
@@ -64,6 +64,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
       default:
         break
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.status])
 
   const filterByUserId = (userId: number | null) => {
