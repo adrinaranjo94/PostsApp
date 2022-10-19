@@ -1,0 +1,11 @@
+.homePage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+
+  hr {
+    width: 100%;
+  }
+}
