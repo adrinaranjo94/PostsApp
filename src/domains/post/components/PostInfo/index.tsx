@@ -1,3 +1,4 @@
+import Paragraph from '@shared/UI/Paragraph'
 import { usePostContext } from '../../hooks/usePostContext'
 
 const PostInfo = () => {
@@ -6,8 +7,12 @@ const PostInfo = () => {
   } = usePostContext()
   return (
     <div>
-      PostInfo
-      <h1>{post.title}</h1>
+      <h1>
+        Post {post.id} | ID usuario: {post.userId}
+      </h1>
+      <hr />
+      <h2>{post.title}</h2>
+      <Paragraph>{post.body}</Paragraph>
     </div>
   )
 }
