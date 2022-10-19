@@ -6,14 +6,14 @@ export const KEY_ROUTE_POSTS_LIST = 'ROUTE_POSTS_LIST'
 export const KEY_ROUTE_POST = 'ROUTE_POST'
 
 const ROUTE_POSTS: ROUTE = {
-  path: 'posts',
+  path: '/posts',
   key: KEY_ROUTE_POSTS_LIST,
   element: POSTS_PAGE,
   routes: [],
 }
 
 const ROUTE_POST: ROUTE = {
-  path: 'editorials/:id',
+  path: '/posts/:id',
   key: KEY_ROUTE_POST,
   element: POST_PAGE,
   routes: [],
