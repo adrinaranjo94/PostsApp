@@ -11,8 +11,10 @@ export const ToastConnector = (): Connector => {
         return { ...args }
       })
     },
-    post: <D, E>(postAction: () => Promise<AxiosResponse<D, E>>) => {
-      return postAction().then(({ ...args }: AxiosResponse<D, E>) => {
+    put: <D, E>(putAction: () => Promise<AxiosResponse<D, E>>) => {
+      const toastId = toast.loading('Actualizando recurso')
+      return putAction().then(({ ...args }: AxiosResponse<D, E>) => {
+        toast.update(toastId, { type: 'success', isLoading: false, render: 'Recurso actualizado', autoClose: 3000 })
         return { ...args }
       })
     },
