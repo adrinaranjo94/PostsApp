@@ -64,6 +64,14 @@ Esto quiere decir que dentro de una aplicación podremos renderizar dos componen
 
 Estos contextos se han utilizado con reducers, permitiendo tener un control más exhaustivo del estado a modificar y notificar al resto de componentes.
 
+## Custom Hooks
+
+Se han desarrollado los siguientes Hooks
+
+- `usePagination` para la implementación de paginación con genéricos
+- `usePostSort` para la implementación de orden por clave de las propiedades que están dentro del modelo Post
+- `usePostForm` para la implementación de formulario y lógicas con el modelo Post
+
 ## Estructura del proyecto
 
 -`applications` Aplicaciones que se utilizarán para renderizar dentro de las rutas -`domains` Dominios orientados al negocio que se utilizarán dentro de las aplicaciones -`router` Lógica del router dinámico para la aplicación -`shared` Conjunto de componentes y lógicas que se usarán de forma transversal en la aplicación
