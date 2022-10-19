@@ -1,3 +1,4 @@
+import FormPost from '@domains/post/components/FormPost'
 import PostInfo from '@domains/post/components/PostInfo'
 import PostProvider from '@domains/post/contexts/PostContext'
 
@@ -9,6 +10,7 @@ const Post = ({ id }: PostProps) => {
     <div>
       <PostProvider id={id}>
         <PostInfo />
+        <FormPost />
       </PostProvider>
     </div>
   )
