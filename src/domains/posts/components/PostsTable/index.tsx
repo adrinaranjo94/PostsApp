@@ -2,7 +2,8 @@ import { PostProperties } from '@domains/posts/models/Post'
 import Table, { Cell, Row, Body, Head, HeadCell } from '@shared/UI/Table'
 import { useNavigate } from 'react-router-dom'
 import { Post } from '../../models/Post'
-import { getDynamicRoutePostByKey } from '../../../../router/route/posts/index'
+import { getDynamicRoutePostByKey } from '@router/route/posts/index'
+import Paragraph from '@shared/UI/Paragraph'
 
 interface PostsTableProps {
   posts: Post[]
@@ -27,7 +28,9 @@ const PostsTable = ({ posts }: PostsTableProps) => {
           <Row key={post.id} onClick={() => handleClickPost(post.id as unknown as string)}>
             <Cell key={`cell-${post.id}-id`}>{post.id}</Cell>
             <Cell key={`cell-${post.id}-title`}>{post.title}</Cell>
-            <Cell key={`cell-${post.id}-body`}>{post.body}</Cell>
+            <Cell key={`cell-${post.id}-body`}>
+              <Paragraph charsLimit={20}>{post.body}</Paragraph>
+            </Cell>
             <Cell key={`cell-${post.id}-userId`}>{post.userId}</Cell>
           </Row>
         ))}
