@@ -29,7 +29,7 @@ export const getPostsRouteByKey = (key: string) => {
 }
 
 export const getDynamicRoutePostByKey = (id: string): string => {
-  return `${ROOT_PATH}${ROUTE_POST.getDynamicPath(id)}`
+  return ROUTE_POST.getDynamicPath(id)
 }
 
 export default ROUTES
