@@ -88,3 +88,9 @@ Si se deseará utilizar sin Docker:
 ```
 npm i && npm run dev
 ```
+
+## DEMO
+
+El proyecto ha sido desplegado en Heroku mediante docker-container
+
+[DEMO DEL PROYECTO EN HEROKU](https://posts-react-ts-app.herokuapp.com)
