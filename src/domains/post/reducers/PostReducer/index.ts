@@ -1,4 +1,12 @@
-import { API_GET_POST, PostReducerAction, PostReducerState, PostStatus, DOWNLOAD_POST } from './types'
+import {
+  API_GET_POST,
+  PostReducerAction,
+  PostReducerState,
+  PostStatus,
+  DOWNLOAD_POST,
+  BULK_POST,
+  IDLE_POST,
+} from './types'
 
 export const defaultState: PostReducerState = {
   post: { id: 0, body: '', title: '', userId: 0 },
@@ -12,7 +20,10 @@ export const PostReducer = (state: PostReducerState, action: PostReducerAction):
       return { ...state, status: PostStatus.GET_POST, isLoading: true }
     case DOWNLOAD_POST:
       return { ...state, post: { ...action.payload.post }, status: PostStatus.IDLE, isLoading: false }
-
+    case BULK_POST:
+      return { ...state, post: { ...action.payload.post }, status: PostStatus.PUT_POST, isLoading: true }
+    case IDLE_POST:
+      return { ...state, status: PostStatus.IDLE, isLoading: false }
     default:
       return state
   }

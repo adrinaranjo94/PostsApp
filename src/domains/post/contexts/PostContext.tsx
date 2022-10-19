@@ -1,16 +1,26 @@
 import { createContext, ReactNode, useEffect, useMemo, useReducer, useState } from 'react'
 import { defaultState, PostReducer } from '../reducers/PostReducer'
-import { PostReducerState, API_GET_POST, PostStatus, DOWNLOAD_POST } from '../reducers/PostReducer/types'
+import {
+  PostReducerState,
+  API_GET_POST,
+  PostStatus,
+  DOWNLOAD_POST,
+  BULK_POST,
+  IDLE_POST,
+} from '../reducers/PostReducer/types'
 import { axiosService } from '../../../shared/services/index'
 import { ToastConnector } from '../../../shared/connectors/ToastConnector/index'
 import { Post } from '../models/Post'
 
 export interface PostContextType {
   state: PostReducerState
+  editPost: (post: Post) => void
 }
 
 const ContextValue: PostContextType = {
   state: defaultState,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  editPost: (post: Post) => {},
 }
 
 export const PostContext = createContext(ContextValue)
@@ -42,13 +52,27 @@ const PostProvider = ({ id, children }: PostProviderProps) => {
             console.log(err)
           })
         break
+      case PostStatus.PUT_POST:
+        service
+          .put<Post, Post>('', state.post)
+          .then(() => {
+            dispatch({ type: IDLE_POST })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+        break
       default:
         break
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.status])
 
-  const value = useMemo(() => ({ state }), [state])
+  const editPost = (post: Post) => {
+    dispatch({ type: BULK_POST, payload: { post: post } })
+  }
+
+  const value = useMemo(() => ({ state, editPost }), [state])
 
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>
 }
