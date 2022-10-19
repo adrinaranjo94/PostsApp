@@ -10,9 +10,9 @@ export const axiosService = (connector: Connector, config: CreateAxiosDefaults) 
 
   const get = <D, E>({ id, urlParams }: getProps = { id: '' }) =>
     connector.get<D, E>(() => axios.get(generateUrl(id, urlParams)))
-  const post = <D, E>(id: string, body: D) => connector.post<D, E>(() => axios.post(generateUrl(id), body))
+  const put = <D, E>(id: string, body: D) => connector.put<D, E>(() => axios.put(generateUrl(id), body))
   return {
     get,
-    post,
+    put,
   }
 }
