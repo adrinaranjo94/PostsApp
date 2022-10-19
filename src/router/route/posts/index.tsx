@@ -1,6 +1,6 @@
 import POSTS_PAGE from './PagePosts'
 import POST_PAGE from './PagePost'
-import { ROUTE, findRouteByKey, ROOT_PATH } from '../../routes'
+import { ROUTE, findRouteByKey } from '../../routes'
 
 export const KEY_ROUTE_POSTS_LIST = 'ROUTE_POSTS_LIST'
 export const KEY_ROUTE_POST = 'ROUTE_POST'
