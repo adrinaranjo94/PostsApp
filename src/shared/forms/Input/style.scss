@@ -1,11 +1,13 @@
+@use "../../../sass/color/variables" as colors;
+
 input {
   display: block;
   width: 100%;
-  max-width: 400px;
   margin: 16px 0;
   padding: 8px;
-  background-color: #311970;
-  border: 1px solid #5f39c1;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid colors.$textColor;
   outline: none;
   color: #fff;
 
