@@ -1,0 +1,26 @@
+@use "./variables" as colors;
+
+@function get-color-variant($color, $effect, $variant) {
+    @if $effect == "light" {
+        @return lighten($color, $variant);
+    } @else {
+        @return darken($color, $variant);
+    }
+}
+
+@function get-bg-color($effect,$variant) {
+    @return get-color-variant(colors.$bgColor, $effect, $variant );
+}
+
+@function get-primary-color($effect,$variant) {
+    @return get-color-variant(colors.$primaryColor,$effect ,$variant );
+}
+
+@function get-secondary-color($effect,$variant) {
+    @return get-color-variant(colors.$secondaryColor,$effect ,$variant );
+}
+
+@function get-text-color($effect,$variant) {
+    @return get-color-variant(colors.$textColor,$effect ,$variant );
+}
+
