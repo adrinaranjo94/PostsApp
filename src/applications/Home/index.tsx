@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { KEY_ROUTE_POSTS_LIST, getPostsRouteByKey } from '@router/route/posts/index'
 import Button from '@shared/UI/Button'
 import './style.scss'
