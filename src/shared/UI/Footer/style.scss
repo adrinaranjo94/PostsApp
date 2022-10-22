@@ -1,10 +1,14 @@
+@use "../../../sass/color/variables" as colors;
+@use "../../../sass/color/functions" as functions;
+
+
 .footer {
   padding: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #120b21;
+  background-color: functions.get-bg-color("light", 8% );
 
   &__author {
     font-size: 14px;
