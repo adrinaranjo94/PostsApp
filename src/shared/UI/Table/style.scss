@@ -1,13 +1,34 @@
+@use "../../../sass/color/variables" as colors;
+@use "../../../sass/color/functions" as functions;
+
 table {
   width: 100%;
-  border-collapse: collapse;
-
-  tr:nth-of-type(odd) {
-    background: #372091;
-  }
+  border-collapse: separate;
+  border-spacing: 0 16px;
 
   td {
     padding: 4px 8px;
+  }
+
+  tbody tr, thead tr {
+    position: relative;
+
+    &:before {
+      content:"";
+      top:0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      position: absolute;
+      background-color: functions.get-bg-color("light", 25%);
+    }
+  }
+
+  thead tr {
+    &:first-child:before {
+      content:"";
+      height: 0;
+    }
   }
 }
 
@@ -18,6 +39,28 @@ table {
   td,
   tr {
     display: block;
+  }
+
+  tbody tr {
+    background-color: functions.get-bg-color("light", 10%);
+    border-radius: 16px;
+    padding: 12px;
+    margin-bottom: 24px;
+
+    &:before {
+      content: unset !important;
+    }
+  }
+
+  td {
+    display: block;
+    text-align: right !important;
+  }
+
+  td:before {
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
   }
 
   thead {

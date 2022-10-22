@@ -1,7 +1,9 @@
+@use "../../../../sass/color/functions" as functions;
+
 .row--hover {
   cursor: pointer;
 }
 
 .row--hover:hover {
-  background-color: #1e0755;
+  background-color: functions.get-bg-color("light",25%);
 }

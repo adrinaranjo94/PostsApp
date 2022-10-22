@@ -68,30 +68,32 @@ const PostsTableActions = () => {
           />
         </div>
         <div className='postsTableActions__sorts'>
-          <Button
-            onClick={() => selectKeyToSort(keyTitleAsc)}
-            classes={[keyTitleAsc === keySelected ? 'button--active' : '']}
-          >
-            Ordenar titulo asc
-          </Button>
-          <Button
-            onClick={() => selectKeyToSort(keyTitleDesc)}
-            classes={[keyTitleDesc === keySelected ? 'button--active' : '']}
-          >
-            Ordenar titulo desc
-          </Button>
-          <Button
-            onClick={() => selectKeyToSort(keyUserIdAsc)}
-            classes={[keyUserIdAsc === keySelected ? 'button--active' : '']}
-          >
-            Ordenar ID usuario asc
-          </Button>
-          <Button
-            onClick={() => selectKeyToSort(keyUserIdDesc)}
-            classes={[keyUserIdDesc === keySelected ? 'button--active' : '']}
-          >
-            Ordenar ID usuario desc
-          </Button>
+          <div className='postsTableActions__sortsContent'>
+            <Button
+              onClick={() => selectKeyToSort(keyTitleAsc)}
+              classes={[keyTitleAsc === keySelected ? 'button--active' : '']}
+            >
+              Ordenar titulo asc
+            </Button>
+            <Button
+              onClick={() => selectKeyToSort(keyTitleDesc)}
+              classes={[keyTitleDesc === keySelected ? 'button--active' : '']}
+            >
+              Ordenar titulo desc
+            </Button>
+            <Button
+              onClick={() => selectKeyToSort(keyUserIdAsc)}
+              classes={[keyUserIdAsc === keySelected ? 'button--active' : '']}
+            >
+              Ordenar ID usuario asc
+            </Button>
+            <Button
+              onClick={() => selectKeyToSort(keyUserIdDesc)}
+              classes={[keyUserIdDesc === keySelected ? 'button--active' : '']}
+            >
+              Ordenar ID usuario desc
+            </Button>
+          </div>
         </div>
       </div>
       {!isLoading && <PostsTable posts={itemsToShow} />}

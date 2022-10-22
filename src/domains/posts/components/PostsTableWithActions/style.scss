@@ -1,16 +1,65 @@
+@use "../../../../sass/color/variables" as colors;
+@use "../../../../sass/color/functions" as functions;
+
 .postsTableActions {
-  padding: 24px;
   display: flex;
+  margin-bottom: 24px;
   gap: 16px;
 
-  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-    flex-direction: column;
-  }
+  &__filter {
+    position: relative;
 
+    &:after {
+      content:"";
+      position: absolute;
+      right: -16px;
+      top: -4px;
+      bottom: -4px;
+      width: 1px;
+      background: functions.get-bg-color("light", 25%);
+    }
+  }
   &__sorts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    margin-right: -16px;
+    position: relative;
+    overflow-x: hidden;
+
+    &Content {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 16px;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      
+      padding: 0 16px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    
+    &:before,
+    &:after {
+      content: "";
+      top:0;
+      bottom: 0;
+      width: 16px;
+      position: absolute;
+    }
+
+    &:before {
+      left: -1px;
+      background: linear-gradient(90deg, colors.$bgColor 0%, transparent 100%);
+    }
+
+    &:after {
+      left: unset;
+      right: -1px;
+      background: linear-gradient(270deg, colors.$bgColor 0%, transparent 100%);
+    }
+
+   
   }
 }
 

@@ -18,20 +18,26 @@ const PostsTable = ({ posts }: PostsTableProps) => {
       <Head>
         <Row>
           <HeadCell key={`cell-${PostProperties.id}`}>{PostProperties.id}</HeadCell>
+          <HeadCell key={`cell-${PostProperties.userId}`}>{PostProperties.userId}</HeadCell>
           <HeadCell key={`cell-${PostProperties.title}`}>{PostProperties.title}</HeadCell>
           <HeadCell key={`cell-${PostProperties.body}`}>{PostProperties.body}</HeadCell>
-          <HeadCell key={`cell-${PostProperties.userId}`}>{PostProperties.userId}</HeadCell>
         </Row>
       </Head>
       <Body>
         {posts.map((post) => (
           <Row key={post.id} onClick={() => handleClickPost(post.id as unknown as string)}>
-            <Cell key={`cell-${post.id}-id`}>{post.id}</Cell>
-            <Cell key={`cell-${post.id}-title`}>{post.title}</Cell>
-            <Cell key={`cell-${post.id}-body`}>
+            <Cell alignCenter key={`cell-${post.id}-id`} dataLabel='Id'>
+              {post.id}
+            </Cell>
+            <Cell alignCenter key={`cell-${post.id}-userId`} dataLabel='Id usuario'>
+              {post.userId}
+            </Cell>
+            <Cell key={`cell-${post.id}-title`} dataLabel='Titulo'>
+              <Paragraph charsLimit={20}>{post.title}</Paragraph>
+            </Cell>
+            <Cell key={`cell-${post.id}-body`} dataLabel='Cuerpo'>
               <Paragraph charsLimit={20}>{post.body}</Paragraph>
             </Cell>
-            <Cell key={`cell-${post.id}-userId`}>{post.userId}</Cell>
           </Row>
         ))}
       </Body>
