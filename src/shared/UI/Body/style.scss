@@ -1,6 +1,12 @@
+@use "../../../sass/color/variables" as colors;
+
 .body {
   padding: 16px;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
   flex: 1;
+  position: relative;
 
   &--navbar {
     padding: 24px;
