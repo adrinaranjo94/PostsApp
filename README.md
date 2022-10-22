@@ -6,7 +6,7 @@ Este proyecto ha sido creado con la intención de llevar a cabo una prueba técn
 
 ## Tecnologías
 
-Ha sido desarrollado con las siguientes tecnologías o herramientas:
+Ha sido desarrollado con las siguientes tecnologías/herramientas:
 
 - Vite
 - React
@@ -17,9 +17,9 @@ Ha sido desarrollado con las siguientes tecnologías o herramientas:
 
 En esta parte del proyecto, cabe destacar que se han implementado funcionalidades o metodologías con el objetivo de marcar unas reglas de cara al desarrollo en equipo.
 
-ESLINT para las reglas de buenas prácticas en la escritura de código
-PRETTIER para la tabulación y limitación de filas del proyecto
-STYLELINT para las reglas de buenas prácticas en la escritura de CSS
+- `ESLINT` para las reglas de buenas prácticas en la escritura de código
+- `PRETTIER` para la tabulación y limitación de filas del proyecto
+- `STYLELINT` para las reglas de buenas prácticas en la escritura de CSS
 
 ## Librerías externas
 
@@ -74,7 +74,10 @@ Se han desarrollado los siguientes Hooks
 
 ## Estructura del proyecto
 
--`applications` Aplicaciones que se utilizarán para renderizar dentro de las rutas -`domains` Dominios orientados al negocio que se utilizarán dentro de las aplicaciones -`router` Lógica del router dinámico para la aplicación -`shared` Conjunto de componentes y lógicas que se usarán de forma transversal en la aplicación
+- `applications` Aplicaciones que se utilizarán para renderizar dentro de las rutas
+- `domains` Dominios orientados al negocio que se utilizarán dentro de las aplicaciones
+- `router` Lógica del router dinámico para la aplicación
+- `shared` Conjunto de componentes y lógicas que se usarán de forma transversal en la aplicación
 
 ## Notificaciones
 
