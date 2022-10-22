@@ -1,0 +1,12 @@
+@use "../../../../sass/color/functions";
+
+.formPost {
+    margin: 16px 0;
+    background: functions.get-bg-color("light", 20%);
+    border-radius: 16px;
+    padding: 16px;
+
+   input {
+    margin-top: 4px;
+   }
+}

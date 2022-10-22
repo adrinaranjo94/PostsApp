@@ -1,0 +1,16 @@
+@use "../../../../sass/color/functions" as functions;
+
+.postInfo {
+    margin: 16px 0;
+    background: functions.get-bg-color("light", 20%);
+    border-radius: 16px;
+    padding: 16px;
+
+    h1, p, h2 {
+        margin-bottom: 8px;
+    }
+
+    hr {
+        margin-bottom: 16px;
+    }
+}

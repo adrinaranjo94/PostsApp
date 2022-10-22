@@ -3,6 +3,8 @@ import Input from '@shared/forms/Input'
 import SubmitButton from '@shared/forms/SubmitButton'
 import { usePostContext } from '../../hooks/usePostContext'
 
+import './style.scss'
+
 const FormPost = () => {
   const {
     state: { post, isLoading },
@@ -10,7 +12,7 @@ const FormPost = () => {
   } = usePostContext()
   const { values, onChangeInput, onSubmit } = usePostForm(post, editPost)
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className='formPost'>
       <label>Titulo</label>
       <Input type={'text'} name={'title'} value={values.title} onChange={onChangeInput} />
       <label>Cuerpo</label>

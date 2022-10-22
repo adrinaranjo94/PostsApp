@@ -1,12 +1,14 @@
 import Paragraph from '@shared/UI/Paragraph'
 import { usePostContext } from '../../hooks/usePostContext'
 
+import './style.scss'
+
 const PostInfo = () => {
   const {
     state: { post },
   } = usePostContext()
   return (
-    <div>
+    <div className='postInfo'>
       <h1>
         Post {post.id} | ID usuario: {post.userId}
       </h1>
